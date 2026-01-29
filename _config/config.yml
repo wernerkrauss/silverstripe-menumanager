@@ -1,0 +1,8 @@
+---
+Name: menuconfig
+Only:
+  moduleexists: silverstripe/subsite
+---
+Netwerkstatt\Menumanager\Model\MenuSet:
+  extensions:
+    - Netwerkstatt\Menumanager\Extension\MenuSetSubsite

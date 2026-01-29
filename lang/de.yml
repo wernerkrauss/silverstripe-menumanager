@@ -1,0 +1,28 @@
+de:
+  MenuSetAdmin:
+    MENUTITLE: Menus
+  Netwerkstatt\Menumanager\Extension\MenuSetSubsite:
+    has_one_Subsite: Subseite
+  Netwerkstatt\Menumanager\Model\LinkItem:
+    PLURALNAME: 'Link Items'
+    PLURALS:
+      one: 'Ein Link Item'
+      other: '{count} Link Items'
+    SINGULARNAME: 'Link Item'
+    db_Enabled: Aktiv
+    db_SortOrder: Sortierung
+    has_one_Link: Link
+    has_one_MenuSet: 'Menu Set'
+    has_one_Parent: Elternelement
+  Netwerkstatt\Menumanager\Model\MenuSet:
+    EDITMENUSET: "Links in '{name}' verwalten"
+    MENUSETS: 'Menu Sets'
+    PLURALNAME: Menus
+    PLURALS:
+      one: 'Ein Menu'
+      other: '{count} Menus'
+    SINGULARNAME: Menu
+    db_AllowChildren: 'Untermenu erlauben'
+    db_Slug: Slug
+    db_Title: Titel
+    has_many_LinkItems: 'Link Items'
