@@ -23,6 +23,11 @@
             "Netwerkstatt\\Menumanager\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Netwerkstatt\\Menumanager\\Tests\\": "tests/"
+        }
+    },
     "config": {
         "allow-plugins": {
             "composer/installers": true,
