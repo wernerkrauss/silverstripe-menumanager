@@ -7,7 +7,7 @@
         "php": "^8.4",
         "silverstripe/framework": "^6",
         "silverstripe/cms": "^6",
-        "silverstripe/linkfield": "^4",
+        "silverstripe/linkfield": "^5",
         "symbiote/silverstripe-gridfieldextensions": "^5"
     },
     "require-dev": {
@@ -16,7 +16,7 @@
         "wernerkrauss/silverstripe-rector": "^1",
         "phpstan/extension-installer": "^1.0",
         "cambis/silverstan": "^2",
-        "silverstripe/subsites": "^4 || ^5 || ^6"
+        "silverstripe/subsites": "^4"
     },
     "autoload": {
         "psr-4": {
