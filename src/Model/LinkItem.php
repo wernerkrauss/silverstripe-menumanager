@@ -40,7 +40,7 @@ class LinkItem extends DataObject
 
     private static string $default_sort = 'SortOrder';
 
-    private static  array $summary_fields = [
+    private static array $summary_fields = [
         'Enabled.Nice' => 'Enabled',
         'Title' => 'Title',
         'Link.MenuTitle' => 'Type',
@@ -82,5 +82,4 @@ class LinkItem extends DataObject
     {
         return $this->Enabled && $this->getHasLink();
     }
-
 }

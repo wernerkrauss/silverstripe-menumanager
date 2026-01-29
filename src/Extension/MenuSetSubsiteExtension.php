@@ -1,6 +1,8 @@
 <?php
 
-namespace Netwerkstatt\Menumanager\Extension;;
+namespace Netwerkstatt\Menumanager\Extension;
+
+;
 
 use SilverStripe\Core\Extension;
 use SilverStripe\Subsites\Model\Subsite;
