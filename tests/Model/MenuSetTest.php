@@ -16,7 +16,7 @@ class MenuSetTest extends SapphireTest
     public function testGetBySlug()
     {
         $mainMenu = $this->objFromFixture(MenuSet::class, 'main');
-        
+
         $found = MenuSet::get_by_slug('main-menu');
         $this->assertNotNull($found);
         $this->assertEquals($mainMenu->ID, $found->ID);
@@ -31,7 +31,7 @@ class MenuSetTest extends SapphireTest
     public function testPermissions()
     {
         $menu = MenuSet::create();
-        
+
         // Menus should not be allowed to be created or deleted via CMS by default
         $this->assertFalse($menu->canCreate());
         $this->assertFalse($menu->canDelete());

@@ -1,4 +1,5 @@
 <?php
+
 namespace Netwerkstatt\Menumanager\Admin;
 
 use Netwerkstatt\Menumanager\Model\MenuSet;
