@@ -1,0 +1,7 @@
+Netwerkstatt\Menumanager\Model\MenuSet:
+  main:
+    Title: 'Main Menu'
+    Slug: 'main-menu'
+  footer:
+    Title: 'Footer Menu'
+    Slug: 'footer-menu'

@@ -14,11 +14,11 @@ class MenuManagerTemplateProvider implements TemplateGlobalProvider
     public static function get_template_global_variables(): array
     {
         return [
-            'MenuSet' => 'MenuSet'
+            'MenuSet' => 'getMenuSet'
         ];
     }
 
-    public static function MenuSet(string $slug): ?SS_List
+    public static function getMenuSet(string $slug): ?SS_List
     {
         if (!$slug) {
             return null;
