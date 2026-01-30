@@ -1,3 +1,9 @@
+[![Latest Stable Version](http://poser.pugx.org/wernerkrauss/silverstripe-menumanager/v)](https://packagist.org/packages/wernerkrauss/silverstripe-menumanager) 
+[![Total Downloads](http://poser.pugx.org/wernerkrauss/silverstripe-menumanager/downloads)](https://packagist.org/packages/wernerkrauss/silverstripe-menumanager) 
+[![Latest Unstable Version](http://poser.pugx.org/wernerkrauss/silverstripe-menumanager/v/unstable)](https://packagist.org/packages/wernerkrauss/silverstripe-menumanager) 
+[![License](http://poser.pugx.org/wernerkrauss/silverstripe-menumanager/license)](https://packagist.org/packages/wernerkrauss/silverstripe-menumanager) 
+[![PHP Version Require](http://poser.pugx.org/wernerkrauss/silverstripe-menumanager/require/php)](https://packagist.org/packages/wernerkrauss/silverstripe-menumanager)
+
 # Silverstripe Menu Manager
 
 A simple menu manager for Silverstripe CMS 6, using the `silverstripe/linkfield` module for managing links. It allows you to define menu sets (e.g., "Main Menu", "Footer Menu") in your configuration and manage their items in the CMS.
