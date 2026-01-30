@@ -17,7 +17,7 @@
         "phpstan/extension-installer": "^1.0",
         "cambis/silverstan": "^2",
         "silverstripe/subsites": "^4",
-        "dnadesign/silverstripe-elemental": "^5"
+        "dnadesign/silverstripe-elemental": "^6"
     },
     "autoload": {
         "psr-4": {
