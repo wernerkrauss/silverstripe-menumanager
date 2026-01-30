@@ -16,7 +16,8 @@
         "wernerkrauss/silverstripe-rector": "^1",
         "phpstan/extension-installer": "^1.0",
         "cambis/silverstan": "^2",
-        "silverstripe/subsites": "^4"
+        "silverstripe/subsites": "^4",
+        "dnadesign/silverstripe-elemental": "^5"
     },
     "autoload": {
         "psr-4": {
