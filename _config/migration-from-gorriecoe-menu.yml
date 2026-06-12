@@ -1,0 +1,18 @@
+---
+Name: menumanager-config
+After:
+  - '#linkfieldconfig'
+---
+
+SilverStripe\LinkField\Tasks\GorriecoeMigrationTask:
+  # is_enabled: true #enable in your module for migration
+  has_many_links_data:
+    # gorriecoe/silverstripe-menu: MenuSet has_many Links -> MenuLink.MenuSet
+    # we still need this mapping so the task calls our extension
+    gorriecoe\Menu\Models\MenuSet:
+      Links: MenuSet
+  classes_that_are_not_link_owners:
+    - gorriecoe\Menu\Models\MenuLink
+    - Netwerkstatt\Menumanager\Model\LinkItem
+  extensions:
+    - Netwerkstatt\Menumanager\Extension\GorriecoeMenuMigrationTaskExtension
