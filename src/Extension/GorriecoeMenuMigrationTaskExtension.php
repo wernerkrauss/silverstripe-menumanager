@@ -3,8 +3,6 @@
 namespace Netwerkstatt\Menumanager\Extension;
 
 use SilverStripe\Core\Extension;
-use SilverStripe\LinkField\Models\Link;
-use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\DB;
 
 /**
@@ -40,7 +38,14 @@ class GorriecoeMenuMigrationTaskExtension extends Extension
 
         // 1. Migrate MenuSets to Menu_MenuSet
         if ($schema->hasTable($newMenuSetTable)) {
-            $this->migrateTableData($oldMenuSetTable, $newMenuSetTable, ['ID', 'Title', 'Slug', 'AllowChildren', 'Created', 'LastEdited']);
+            $this->migrateTableData($oldMenuSetTable, $newMenuSetTable, [
+                'ID',
+                'Title',
+                'Slug',
+                'AllowChildren',
+                'Created',
+                'LastEdited'
+            ]);
         }
 
         // 2. Migrate MenuLink to Menu_LinkItem
@@ -53,7 +58,8 @@ class GorriecoeMenuMigrationTaskExtension extends Extension
 
             if ($oldLinkTable) {
                 $quotedOldLinkTable = $db->escapeIdentifier($oldLinkTable);
-                $sql = "INSERT INTO $quotedNewLinkItemTable (ID, MenuSetID, SortOrder, LinkID, Enabled, Created, LastEdited)
+                $sql = "INSERT INTO $quotedNewLinkItemTable (ID, MenuSetID, SortOrder, LinkID, Enabled, 
+                   Created, LastEdited)
                      SELECT ML.ID, ML.MenuSetID, ML.Sort, ML.ID, 1, L.Created, L.LastEdited
                      FROM $quotedOldMenuLinkTable AS ML
                      INNER JOIN $quotedOldLinkTable AS L ON ML.ID = L.ID
@@ -69,7 +75,8 @@ class GorriecoeMenuMigrationTaskExtension extends Extension
                 // Fallback if Link table is already gone (should not happen during migration task)
                 $sql = "INSERT INTO $quotedNewLinkItemTable (ID, MenuSetID, SortOrder, LinkID, Enabled)
                      SELECT ID, MenuSetID, Sort, ID, 1 FROM $quotedOldMenuLinkTable
-                     ON DUPLICATE KEY UPDATE MenuSetID = VALUES(MenuSetID), SortOrder = VALUES(SortOrder), LinkID = VALUES(LinkID), Enabled = VALUES(Enabled)";
+                     ON DUPLICATE KEY UPDATE MenuSetID = VALUES(MenuSetID), SortOrder = VALUES(SortOrder), 
+                                             LinkID = VALUES(LinkID), Enabled = VALUES(Enabled)";
                 $db->query($sql);
             }
         }
@@ -126,7 +133,8 @@ class GorriecoeMenuMigrationTaskExtension extends Extension
         }
         $updateClause = implode(', ', $updates);
 
-        $sql = "INSERT INTO $quotedNew ($fieldList) SELECT $fieldList FROM $quotedOld ON DUPLICATE KEY UPDATE $updateClause";
+        $sql = "INSERT INTO $quotedNew ($fieldList) SELECT $fieldList FROM $quotedOld 
+                                       ON DUPLICATE KEY UPDATE $updateClause";
         $db->query($sql);
     }
 
