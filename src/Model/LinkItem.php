@@ -2,12 +2,16 @@
 
 namespace Netwerkstatt\Menumanager\Model;
 
+use Override;
 use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor;
 use SilverStripe\LinkField\Models\FileLink;
 use SilverStripe\LinkField\Models\Link;
 use SilverStripe\LinkField\Models\SiteTreeLink;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\Hierarchy\Hierarchy;
+use Symbiote\GridFieldExtensions\GridFieldNestedForm;
+use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
 
 class LinkItem extends DataObject
 {
@@ -48,19 +52,23 @@ class LinkItem extends DataObject
         'Children.Count' => 'Children'
     ];
 
+    #[Override]
     public function getCMSFields(): FieldList
     {
         $fields = parent::getCMSFields();
 
-        $fields->removeByName('MenuSetID');
-        $fields->removeByName('ParentID');
-        $fields->removeByName('SortOrder');
-
+        $fields->removeByName([
+            'MenuSetID',
+            'ParentID',
+            'SortOrder',
+        ]);
+        //add
 
         return $fields;
     }
 
 
+    #[Override]
     public function getTitle(): string
     {
         return $this->Link()?->Title ?? 'New Link Item';
@@ -81,5 +89,21 @@ class LinkItem extends DataObject
     public function getIsEnabled(): bool
     {
         return $this->Enabled && $this->getHasLink();
+    }
+
+    public function objectsToUpdate(): array
+    {
+        return $this->MenuSet()->objectsToUpdate();
+    }
+
+    public function getNestedConfig()
+    {
+        $config = GridFieldConfig_RelationEditor::create();
+        $config->addComponent(GridFieldOrderableRows::create('SortOrder'));
+//        $config->addComponent(GridFieldAddNewInlineButton::create());
+//        $config->removeComponentsByType(GridFieldAddNewButton::class);
+        $config->addComponent(GridFieldNestedForm::create('Children')
+            ->setRelationName('Children'));
+        return $config;
     }
 }

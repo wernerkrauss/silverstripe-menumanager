@@ -11,6 +11,8 @@ use SilverStripe\ORM\DB;
 use SilverStripe\ORM\HasManyList;
 use SilverStripe\Security\Permission;
 use SilverStripe\Security\PermissionProvider;
+use SilverStripe\Forms\GridField\GridField;
+use Symbiote\GridFieldExtensions\GridFieldNestedForm;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
 
 /**
@@ -57,7 +59,7 @@ class MenuSet extends DataObject implements PermissionProvider
      * @var array
      */
     private static array $has_many = [
-        'LinkItems' => LinkItem::class,
+        'LinkItems' => LinkItem::class . '.MenuSet',
     ];
 
     private static array $owns = [
@@ -86,14 +88,22 @@ class MenuSet extends DataObject implements PermissionProvider
 //     * CMS Fields
 //     * @return FieldList
 //     */
+    #[Override]
     public function getCMSFields(): FieldList
     {
         $fields = parent::getCMSFields();
         if ($this->exists()) {
+            /** @var GridField $itemsGrid */
             $itemsGrid = $fields->dataFieldByName('LinkItems');
             $fields->removeFieldFromTab('Root', 'LinkItems');
 
-            $itemsGrid->getConfig()->addComponent(GridFieldOrderableRows::create('SortOrder'));
+            $config = $itemsGrid->getConfig();
+            $config->addComponent(GridFieldOrderableRows::create('SortOrder'));
+            $config->addComponent(GridFieldNestedForm::create('Children')
+                ->setRelationName('Children'));
+
+            $itemsGrid->setList($this->LinkItems()->filter('ParentID', 0));
+
             $fields->addFieldToTab('Root.Main', $itemsGrid);
         }
         return $fields;
@@ -264,5 +274,10 @@ class MenuSet extends DataObject implements PermissionProvider
         return $this->Links()->filter([
             'ParentID' => 0
         ]);
+    }
+
+    public function objectsToUpdate(): array
+    {
+        return [];
     }
 }
